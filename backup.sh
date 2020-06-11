@@ -54,6 +54,8 @@ do
     pg_dump -Fc -h $dbhost -p $dbport -U $dbuser $dbname > $filename_data
     echo "Uploading to aws s3 $AWS_S3_ENDPOINT cp $filename_data s3://$bucket/$datepath/$filename_data"
     aws s3 $AWS_S3_ENDPOINT cp $filename_data s3://$bucket/$datepath/$filename_data
+    echo "Uploading to aws s3 $AWS_S3_ENDPOINT cp $filename_data s3://$bucket/latest.sql"
+    aws s3 $AWS_S3_ENDPOINT cp $filename_data s3://$bucket/latest.sql
 
     echo "Backup No. $count finished"
     rm $filename_data
